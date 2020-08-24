@@ -167,8 +167,8 @@ function g1_wp_tag_cloud( $return, $args ) {
 
 
 function addMigrateLib( $hook ){
-       	wp_register_script( 'jquery-migrate-fix-by-dave', '//code.jquery.com/jquery-migrate-1.3.0.js', array('jquery'), true );
-       	wp_enqueue_script( 'jquery-migrate-fix-by-dave' );
+	wp_register_script( 'jquery-migrate-fix-by-dave', '//code.jquery.com/jquery-migrate-1.3.0.js', array('jquery'), true );
+	wp_enqueue_script( 'jquery-migrate-fix-by-dave' );
 }
 
 add_action( 'admin_enqueue_scripts', 'addMigrateLib' );
