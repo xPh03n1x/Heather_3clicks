@@ -36,7 +36,7 @@ jQuery(document).ready(function () {
         jQuery(this).next('.farb-popup').hide();
     });
 
-    $colorpicker_inputs.live('focus', function (e) {
+    $(document).on('focus', $colorpicker_inputs, function(e){
         jQuery(this).next('.farb-popup').show();
         jQuery(this).parents('li').css({
             position : 'relative',
@@ -45,7 +45,7 @@ jQuery(document).ready(function () {
         jQuery('#tabber').css({overflow : 'visible'});
     });
 
-    $colorpicker_inputs.live('blur', function (e) {
+    $(document).on('blur', $colorpicker_inputs, function(e){
         jQuery(this).next('.farb-popup').hide();
         jQuery(this).parents('li').css({
             zIndex : '0'

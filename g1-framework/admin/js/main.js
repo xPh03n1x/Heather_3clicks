@@ -75,75 +75,75 @@ jQuery(document).ready(function() {
 	// INITIALIZE COLOR PICKER
 	jQuery('.g1-field-color').each(function(){
 		var $this = jQuery(this);
-		
+
 		var $container = $this.find('.g1-color-picker-container').eq(0);
 		var $input = $this.find('input').eq(0);
 		var $preview = $this.find('.g1-color-picker-preview').eq(0);
 		var $previewCurrent = $this.find('.g1-color-picker-preview-current').eq(0);
 		var $previewNew = $this.find('.g1-color-picker-preview-new').eq(0);
 		var $toggle = $this.find('.g1-color-picker-toggle').eq(0);
-		
+
 		var openColorPicker = function(){
 			$preview.addClass('on');
 			$container.addClass('on');
-			
-			$container.farbtastic(function callback(color){			 			 
+
+			$container.farbtastic(function callback(color){
 				 $previewNew.css('background-color', color);
 				 $input.attr('value', color);
 			 });
-			
-			jQuery.farbtastic($container).setColor($input.attr('value'));		
+
+			jQuery.farbtastic($container).setColor($input.attr('value'));
 		};
-		
+
 		$this.blur(function(){
 			if ( $preview.is( '.on' ) ) {
 				//$previewCurrent.css( 'background-image', 'none' );
 				$previewCurrent.css( 'background', $previewNew.css('background-color') );
 				$preview.removeClass( 'on' );
 				$container.removeClass( 'on' );
-			}	
+			}
 		});
-		
-		$previewCurrent.click(function(){			
-			if ( $preview.is('.on') ) {	
-				$previewNew.css('background-color', $previewCurrent.css('background-color'));			
-			} else {				
+
+		$previewCurrent.click(function(){
+			if ( $preview.is('.on') ) {
+				$previewNew.css('background-color', $previewCurrent.css('background-color'));
+			} else {
 				openColorPicker();
-			}	
-		});		
-		
-		$toggle.click( openColorPicker );	
+			}
+		});
+
+		$toggle.click( openColorPicker );
 	});
-	
+
 	jQuery('.g1-option-view-color input').blur(function(){
 		var $preview = jQuery(this).siblings('.g1-color-picker-preview').eq(0);
 		$preview.find('.g1-color-picker-preview-current').css('background-color', jQuery(this).attr('value'));
 	});
-	
-	
+
+
 	// INITIALIZE FORM UNITS
 	jQuery('.g1-option-view .g1-help').each(function(){
-		var context = this;		
+		var context = this;
 		jQuery('.g1-help-content',context).hide();
 		jQuery('.g1-help-toggle', context).toggleClass('g1-help-toggle-off').click(function(){
 			jQuery(this).toggleClass('g1-help-toggle-on').toggleClass('g1-help-toggle-off');
 			jQuery('.g1-help-content', context).toggle('fast');
 		});
 	});
-	
-	
+
+
 	jQuery( '.g1-field-image-choice' ).each( function() {
 		var container = jQuery(this);
 		jQuery( 'div:has( input:checked )', this).addClass( 'g1-checked' );
-				
+
 		jQuery( 'div input', this ).change( function() {
 			jQuery(this).blur();
 			jQuery( 'div', container ).removeClass( 'g1-checked' );
 			jQuery( 'div:has( input:checked )', container).addClass( 'g1-checked' );
-		} ); 
-		
+		} );
+
 	} );
-	
+
 	jQuery('input[type="range"]').rangeinput({ progress: true });
 
 	// INITIALIZE SHORTCODE GENERATOR
@@ -173,7 +173,7 @@ jQuery(document).ready(function() {
 			    	return null;
 			    }
 			});
-		
+
 			tinymce.PluginManager.add( id, tinymce.plugins[ id ]);
 		});
 	}
@@ -205,7 +205,7 @@ jQuery(document).ready(function() {
 
     registerShortcodeGeneratorForHTMLEditor();
 
-    $('.g1-option-view-multichoice-text input[type="checkbox"]').live('change', function() {
+    $(document).on('change', '.g1-option-view-multichoice-text input[type="checkbox"]', function(){
         reload_multichoice_text_option_value($(this).parents('.g1-option-view-multichoice-text'));
     });
 
@@ -255,7 +255,7 @@ jQuery(document).ready(function() {
         $label.append($helpSwitch);
     });
 
-    $(window).load(function() {
+    $( window ).on("load", function() {
         if ($('body').hasClass('nav-menus-php')) {
             $(document).bind('DOMNodeInserted', function(e) {
                 var $target = $(e.target);

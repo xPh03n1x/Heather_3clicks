@@ -1,6 +1,6 @@
 /*global jQuery, document*/
 jQuery(document).ready(function () {
-    jQuery('.redux-opts-multi-text-remove').live('click', function () {
+    $(document).on('click', '.redux-opts-multi-text-remove', function(){
         jQuery(this).prev('input[type="text"]').val('');
         jQuery(this).parent().fadeOut('slow', function () { jQuery(this).remove(); });
     });

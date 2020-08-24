@@ -3,11 +3,11 @@
 /* global Modernizr */
 
 /* -------------------------------------------
- * 
+ *
  * 3Clicks javascript code is splitted into 2 sections:
  * 1) core functions ("G1 Core" section) - you shouldn't modify them
  * 2) theme related functions ("G1 Main" section)
- * 
+ *
  * If you want to start modyfing our code, you should
  * look at "G1 Main" section. Some functions are invoked
  * when document is ready and some need to be launched
@@ -16,7 +16,7 @@
  * If you want to add your custom functions, please
  * add theme using our "modifications.js" script.
  * It's located in 3clicks-child-theme folder.
- * 
+ *
  --------------------------------------------- */
 
 /* =================== */
@@ -1219,7 +1219,7 @@ var g1_apply_filters = function(name, value, params) {
                     loadPlayer($(this));
                 });
 
-                $( 'figure.media-audio').live('loadPlayer', function () {
+                $(document).on('loadPlayer','figure.media-audio', function(){
                     loadPlayer($(this));
                 });
             }
@@ -1313,7 +1313,7 @@ G1.theme = {
         G1.theme.enableBeforeAfterEffect();
         //G1.theme.replaceButtonsToLinks();
         G1.theme.enableOpeningLinksInNewWindow();
-        
+
         G1.theme.enableBackgroundScroll();
         G1.theme.handleSearchBoxFocus();
         G1.theme.handleIEIframeHover();
@@ -1329,7 +1329,7 @@ G1.theme = {
     });
 
     // window loaded
-    $(window).load(function() {
+    $(window).on("load",function(){
         G1.theme.enableSliderForPostFormatGallerySingleItem();
         G1.theme.enableSliderForPostFormatGalleryCollectionItem();
         G1.theme.enableHtmlRotator();
@@ -1499,11 +1499,11 @@ G1.theme.handleHoverState = function () {
 
 G1.theme.handleIEIframeHover = function () {
     if(G1.isIE){
-        $('article iframe').live('hover',function() {
+        $(document).on('hover','article iframe', function(){
             $(this).parents("article").addClass('g1-on--mouse');
         });
 
-        $('article iframe').live('mouseleave',function() {
+        $(document).on('mouseleave','article iframe', function(){
             $(this).parents("article").removeClass('g1-on--mouse');
         });
     }
